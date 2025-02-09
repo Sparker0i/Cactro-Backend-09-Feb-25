@@ -21,6 +21,7 @@ func NewRouter(cfg *config.Config) *gin.Engine {
 	router.POST("/cache", cacheHandler.PostCacheHandler)
 	router.GET("/cache/:key", cacheHandler.GetCacheHandler)
 	router.DELETE("/cache/:key", cacheHandler.DeleteCacheHandler)
+	router.GET("/", cacheHandler.GetHome)
 
 	// Register health endpoints.
 	router.GET("/live", healthHandler.Liveness)

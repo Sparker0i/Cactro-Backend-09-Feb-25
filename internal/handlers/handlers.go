@@ -49,6 +49,10 @@ func (h *CacheHandler) GetCacheHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"key": key, "value": value})
 }
 
+func (h *CacheHandler) GetHome(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"message": "Welcome Home!"})
+}
+
 // DeleteCacheHandler handles DELETE /cache/:key to remove a key from the cache.
 func (h *CacheHandler) DeleteCacheHandler(c *gin.Context) {
 	key := c.Param("key")
