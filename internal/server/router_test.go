@@ -2,7 +2,7 @@ package server_test
 
 import (
 	"bytes"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -36,7 +36,7 @@ func TestRouter_PostGetDelete(t *testing.T) {
 	if recorder.Code != http.StatusOK {
 		t.Errorf("expected GET status 200, got %d", recorder.Code)
 	}
-	body, _ := ioutil.ReadAll(recorder.Body)
+	body, _ := io.ReadAll(recorder.Body)
 	if !strings.Contains(string(body), "bar") {
 		t.Errorf("expected response body to contain 'bar', got %s", string(body))
 	}
