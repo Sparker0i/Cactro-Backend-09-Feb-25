@@ -1,7 +1,7 @@
 {
-    "functions": {
-        "api/index.go": {
-            "runtime": "go1.x"
-        }
+  "build": {
+    "env": {
+      "GO_BUILD_FLAGS": "-ldflags '-s -w'"
     }
+  }
 }
