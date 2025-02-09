@@ -13,7 +13,7 @@ type CacheHandler struct {
 }
 
 // NewCacheHandler creates a new CacheHandler.
-func NewCacheHandler(c *cache.Cache) *CacheHandler {
+func New(c *cache.Cache) *CacheHandler {
 	return &CacheHandler{Cache: c}
 }
 
