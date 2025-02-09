@@ -20,13 +20,13 @@ func main() {
 		}
 	}
 
-	cacheObject := cache.NewCache(maxSize)
-	handler := handlers.NewCacheHandler(cacheObject)
+	cacheInstance := cache.New(maxSize)
+	cacheHandler := handlers.New(cacheInstance)
 
 	router := gin.Default()
-	router.POST("/cache", handler.PostCacheHandler)
-	router.GET("/cache/:key", handler.GetCacheHandler)
-	router.DELETE("/cache/:key", handler.DeleteCacheHandler)
+	router.POST("/cache", cacheHandler.PostCacheHandler)
+	router.GET("/cache/:key", cacheHandler.GetCacheHandler)
+	router.DELETE("/cache/:key", cacheHandler.DeleteCacheHandler)
 
 	router.Run(":8080")
 }

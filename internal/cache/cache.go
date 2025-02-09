@@ -11,7 +11,7 @@ type Cache struct {
 	maxSize int
 }
 
-func NewCache(maxSize int) *Cache {
+func New(maxSize int) *Cache {
 	return &Cache{
 		data:    make(map[string]string),
 		maxSize: maxSize,
