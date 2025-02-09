@@ -5,14 +5,23 @@ import (
 	"sync"
 )
 
-// Cache represents an in-memory key-value store with a fixed maximum capacity.
+// Interface for cache, can easily swap out for something like Redis
+type CacheStore interface {
+	Set(key, value string) error
+	Get(key string) (string, bool)
+	Delete(key string)
+}
+
+// struct for implementing CacheStore, runs as long as the deployment runs
 type Cache struct {
 	mu      sync.RWMutex
 	data    map[string]string
 	maxSize int
 }
 
-// New creates and returns a new Cache instance with the given maximum size.
+// asserting that Cache implements CacheStore.
+var _ CacheStore = (*Cache)(nil)
+
 func New(maxSize int) *Cache {
 	return &Cache{
 		data:    make(map[string]string),
