@@ -12,6 +12,7 @@ func NewRouter(cfg *config.Config) *gin.Engine {
 	// Initialize the cache with the configured maximum size.
 	cacheInstance := cache.New(cfg.MaxCacheSize)
 	cacheHandler := handlers.New(cacheInstance)
+	healthHandler := handlers.NewHealthHandler()
 
 	// Create a Gin router with default middleware (Logger, Recovery).
 	router := gin.Default()
@@ -20,6 +21,10 @@ func NewRouter(cfg *config.Config) *gin.Engine {
 	router.POST("/cache", cacheHandler.PostCacheHandler)
 	router.GET("/cache/:key", cacheHandler.GetCacheHandler)
 	router.DELETE("/cache/:key", cacheHandler.DeleteCacheHandler)
+
+	// Register health endpoints.
+	router.GET("/live", healthHandler.Liveness)
+	router.GET("/ready", healthHandler.Readiness)
 
 	return router
 }
