@@ -1,6 +1,6 @@
 module github.com/Sparker0i/Cactro-Backend-09-Feb-25
 
-go 1.23.6
+go 1.23.4
 
 require (
 	github.com/bytedance/sonic v1.12.8 // indirect
