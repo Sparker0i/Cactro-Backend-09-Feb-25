@@ -9,11 +9,11 @@ import (
 
 // CacheHandler holds the cache instance to be used by HTTP handlers.
 type CacheHandler struct {
-	Cache *cache.Cache
+	Cache cache.CacheStore
 }
 
-// NewCacheHandler creates a new CacheHandler.
-func New(c *cache.Cache) *CacheHandler {
+// NewCacheHandler creates a new CacheHandler instance.
+func New(c cache.CacheStore) *CacheHandler {
 	return &CacheHandler{Cache: c}
 }
 
